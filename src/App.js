@@ -25,11 +25,12 @@ class App extends Component {
     this.lettersNumbersCheck(pw);
     this.uppercaseCheck(pw);
     this.specialCharCheck(pw);
+    this.pwMatchCheck(pw, this.state.pwConfirm);
     this.setState({ pw });
   }
 
   pwConfirmUpdate(pwConfirm) {
-    this.pwMatchCheck(pwConfirm);
+    this.pwMatchCheck(this.state.pw, pwConfirm);
     this.setState({ pwConfirm });
   }
 
@@ -69,12 +70,26 @@ class App extends Component {
     }
   }
 
-  pwMatchCheck(pwConfirm) {
-    if (this.state.pw === pwConfirm) {
+  pwMatchCheck(pw, pwConfirm) {
+    if (pw === pwConfirm && pw !== '' && pwConfirm !== '') {
       this.setState({  pwMatchCheck: true });
     } else {
       this.setState({ pwMatchCheck: false });
     }
+  }
+
+  submit(event) {
+    event.preventDefault();
+    if (this.state.username &&
+        this.state.lengthCheck &&
+        this.state.lettersNumbersCheck &&
+        this.state.specialCharCheck &&
+        this.state.uppercaseCheck &&
+        this.state.pwMatchCheck) {
+          alert('User Successfully Created!');
+        } else {
+          alert('Please meet the password criteria specified. Thank you!');
+        }
   }
 
   render() {
@@ -83,7 +98,6 @@ class App extends Component {
         <div className="row">
           <div className="col-xs-12 col-sm-6">
             <h2 className="header">Create a New Account</h2>
-            <p className="sub-header">Already a member? <a className="login">Login</a></p>
           </div>
         </div>
         <div className="row">
@@ -101,7 +115,7 @@ class App extends Component {
                 <input 
                   value={this.state.pw}
                   onChange={event => this.pwUpdate(event.target.value)}
-                  type="pasword" 
+                  type="password" 
                   className="form-control" 
                   placeholder="New Password" />
               </div>
@@ -109,11 +123,11 @@ class App extends Component {
                 <input 
                   value={this.state.pwConfirm}
                   onChange={event => this.pwConfirmUpdate(event.target.value)}
-                  type="pasword" 
+                  type="password" 
                   className="form-control"
                   placeholder="Re-enter Password" />
               </div>
-              <button type="submit" className='btn btn-success btn-block' >Create Account</button> 
+              <button onClick={event => this.submit(event)} type="submit" className='btn btn-success btn-block' >Create Account</button> 
             </form>
           </div>
           <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">

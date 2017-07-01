@@ -2,4 +2,21 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: #000;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.glyphicon-remove-circle {
+  color: red;
+}
+
+.header, .sub-header {
+  color: #fff;
+}
+
+.container {
+  max-width: 920px;
 }

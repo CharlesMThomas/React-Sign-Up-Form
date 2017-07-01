@@ -1,1 +1,1 @@
-# Sign up form with password criteria validation using React
+# React Sign Up Form

@@ -9,6 +9,10 @@ ul {
   list-style-type: none;
 }
 
+li {
+  font-size: 16px;
+}
+
 .invalid {
   color: red;
 }
@@ -22,5 +26,5 @@ ul {
 }
 
 .container {
-  max-width: 920px;
+  max-width: 980px;
 }

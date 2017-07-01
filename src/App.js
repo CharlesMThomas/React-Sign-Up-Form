@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import LengthCheck from './containers/lengthCheck.js';
+import CriteriaMessage from './containers/criteriaMessage.js';
 
 class App extends Component {
   constructor(props) {
@@ -11,9 +11,24 @@ class App extends Component {
       formType: 'signUp',
       email: '',
       pw: '',
-      pwConfirm: ''
+      pwConfirm: '',
+      lengthCheck: false
     }
   }
+
+  pwUpdate(pw) {
+    this.setState({ pw });
+    this.lengthCheck(pw);
+  }
+
+  lengthCheck(pw) {
+    if (pw.length > 8) {
+        this.setState({ lengthCheck: true });
+    } else {
+        this.setState({ lengthCheck: false });
+    }
+  }
+
   render() {
     return (
       <div className="App container">
@@ -37,7 +52,7 @@ class App extends Component {
               <div className="form-group">
                 <input 
                   value={this.state.pw}
-                  onChange={event => this.setState({pw: event.target.value})}
+                  onChange={event => this.pwUpdate(event.target.value)}
                   type="pasword" 
                   className="form-control" 
                   placeholder="New Password" />
@@ -58,7 +73,7 @@ class App extends Component {
               <div className="panel-body">
                 <h3>Password Criteria</h3>
                 <ul>
-                  <LengthCheck pw={this.state.pw} />
+                  <CriteriaMessage valid={this.state.lengthCheck} msg='Password must be more than 8 characters' />
                   <li className="text-left"><span className="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Password must both letters and numbers.</li>
                   <li className="text-left"><span className="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Password must contain at least 1 uppercase letter.</li>
                   <li className="text-left"><span className="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Password must contain at least 1 special character.</li>

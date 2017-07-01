@@ -9,8 +9,12 @@ ul {
   list-style-type: none;
 }
 
-.glyphicon-remove-circle {
+.invalid {
   color: red;
+}
+
+.valid {
+  color: green;
 }
 
 .header, .sub-header {

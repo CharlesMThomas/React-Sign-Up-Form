@@ -1,1 +1,1 @@
-# oAuth Login and Validation using React
+# Sign up form with password criteria validation using React
